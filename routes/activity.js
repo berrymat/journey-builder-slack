@@ -125,7 +125,7 @@ const sendMessage = args => {
       body: message,
       to: `whatsapp:${phoneNumber}`
     })
-    .then(waMessage => console.log(waMessage.sid));
+    .then(waMessage => console.log("WhatsApp Sid", waMessage.sid));
 };
 
 /*
