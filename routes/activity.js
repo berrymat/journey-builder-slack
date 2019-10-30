@@ -28,7 +28,7 @@ function logData(req) {
     stale: req.stale,
     protocol: req.protocol,
     secure: req.secure,
-    originalUrl: req.originalUrl,
+    originalUrl: req.originalUrl
   });
   console.log("body: " + util.inspect(req.body));
   console.log("headers: " + req.headers);
@@ -90,7 +90,7 @@ const getMessage = args => {
       return formatMessage(
         template,
         futureDate.toLocaleDateString(),
-        futureDate.toLocaleTimeString(),
+        futureDate.toLocaleTimeString()
       );
     }
     case "Order template": {
@@ -104,7 +104,7 @@ const getMessage = args => {
         "OCE",
         "widgets",
         futureDate.toLocaleDateString(),
-        "https://iqvia.com",
+        "https://iqvia.com"
       );
     }
   }
@@ -123,7 +123,7 @@ const sendMessage = args => {
     .create({
       from: "whatsapp:+14155238886",
       body: message,
-      to: `whatsapp:${phoneNumber}`,
+      to: `whatsapp:${phoneNumber}`
     })
     .then(waMessage => console.log(waMessage.sid));
 };
