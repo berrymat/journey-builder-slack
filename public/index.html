@@ -1,41 +1,35 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title></title>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css" />
     <script type="text/javascript" src="js/require.js"></script>
     <script type="text/javascript">
-        (function () {
-            var config = {
-                baseUrl: 'js'
-            };
+      (function() {
+        var config = {
+          baseUrl: "js",
+          paths: {
+            jquery: "https://code.jquery.com/jquery-3.4.1.js",
+          },
+        };
 
-            var dependencies = [
-                'customActivity'
-            ];
+        var dependencies = ["customActivity"];
 
-            require(config, dependencies);
-        })();
+        require(config, dependencies);
+      })();
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="step1" class="step">
-        <div class="slds-grid">
-
-            <main class="slds-col">
-               
-                <h1>welcome to your activity!</h1>
-            </main>
-            
-
-        </div>
-
+      <div class="slds-grid">
+        <main class="slds-col">
+          <h1>welcome to your activity!</h1>
+        </main>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

@@ -1,11 +1,10 @@
-define(["postmonger"], function(Postmonger) {
+define(["postmonger", "jquery"], function(Postmonger, $) {
   "use strict";
 
   var connection = new Postmonger.Session();
   var authTokens = {};
   var payload = {};
-  // $(window).ready(onRender);
-  onRender();
+  $(window).ready(onRender);
 
   connection.on("initActivity", initialize);
   connection.on("requestedTokens", onGetTokens);
