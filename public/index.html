@@ -5,6 +5,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/styles/salesforce-lightning-design-system.css"
+    />
     <link rel="stylesheet" href="css/styles.css" />
     <script type="text/javascript" src="js/require.js"></script>
     <script type="text/javascript">
@@ -27,7 +32,23 @@
     <div id="step1" class="step">
       <div class="slds-grid">
         <main class="slds-col">
-          <h1>welcome to your activity!</h1>
+          <h1>WhatsApp notification</h1>
+
+          <div class="slds-form-element">
+            <label class="slds-form-element__label" for="message-template"
+              >Message template</label
+            >
+            <div class="slds-form-element__control">
+              <div class="slds-select_container">
+                <select class="slds-select" id="message-template">
+                  <option value="">Please select</option>
+                  <option>Code template</option>
+                  <option>Appointment template</option>
+                  <option>Order template</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </main>
       </div>
     </div>
