@@ -60,13 +60,13 @@ define(["postmonger", "jquery"], function(Postmonger, $) {
   }
 
   function save() {
-    var postcardURLValue = $("#postcard-url").val();
-    var postcardTextValue = $("#postcard-text").val();
+    var messageTemplate = $("#message-template").val();
 
     payload["arguments"].execute.inArguments = [
       {
         tokens: authTokens,
         emailAddress: "{{Contact.Attribute.PostcardJourney.EmailAddress}}",
+        messageTemplate: messageTemplate,
       },
     ];
 
