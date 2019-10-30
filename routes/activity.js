@@ -5,7 +5,7 @@ var util = require("util");
 const Path = require("path");
 const JWT = require(Path.join(__dirname, "..", "lib", "jwtDecoder.js"));
 var util = require("util");
-var http = require("https");
+const axios = require("axios");
 var twilio = require("twilio");
 
 exports.logExecuteData = [];
@@ -112,20 +112,22 @@ const getMessage = args => {
 };
 
 const sendMessage = args => {
-  const message = getMessage(args);
+  //const message = getMessage(args);
 
-  const accountSid = process.env.waAccountSid;
-  const authToken = process.env.waAuthToken;
-
-  const phoneNumber = "+15703507242"; // args.phoneNumber;
-  const client = twilio(accountSid, authToken);
-  client.messages
-    .create({
-      from: "whatsapp:+14155238886",
-      body: message,
-      to: `whatsapp:${phoneNumber}`
+  axios
+    .post(
+      "https://hooks.slack.com/services/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",
+      {
+        text: `Journey Builder: ${JSON.stringify(args)}`
+      }
+    )
+    .then(res => {
+      console.log(`statusCode: ${res.statusCode}`);
+      console.log(res);
     })
-    .then(waMessage => console.log("WhatsApp Sid", waMessage.sid));
+    .catch(error => {
+      console.error(error);
+    });
 };
 
 /*
