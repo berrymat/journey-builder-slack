@@ -30,7 +30,7 @@ define(["postmonger", "jquery"], function(Postmonger, $) {
       payload["arguments"] &&
         payload["arguments"].execute &&
         payload["arguments"].execute.inArguments &&
-        payload["arguments"].execute.inArguments.length > 0,
+        payload["arguments"].execute.inArguments.length > 0
     );
 
     var inArguments = hasInArguments
@@ -46,7 +46,7 @@ define(["postmonger", "jquery"], function(Postmonger, $) {
     connection.trigger("updateButton", {
       button: "next",
       text: "done",
-      visible: true,
+      visible: true
     });
   }
 
@@ -66,9 +66,10 @@ define(["postmonger", "jquery"], function(Postmonger, $) {
       {
         tokens: authTokens,
         key: "{{Contact.Key}}",
+        sms: "{{Contact.Default.SMS}}",
         emailAddress: "{{Contact.Attribute.PostcardJourney.EmailAddress}}",
-        messageTemplate: messageTemplate,
-      },
+        messageTemplate: messageTemplate
+      }
     ];
 
     payload["metaData"].isConfigured = true;

@@ -18,6 +18,7 @@
       "inArguments": [
         {
           "key": "{{Contact.Key}}",
+          "sms": "{{Contact.Default.SMS}}",
           "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}",
           "messageTemplate": ""
         }
