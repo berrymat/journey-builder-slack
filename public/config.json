@@ -31,7 +31,7 @@
     }
   },
   "configurationArguments": {
-    "applicationExtensionKey": "7c47da80-55af-4858-a2c8-6e8865eb26a9",
+    "applicationExtensionKey": "58253707-4e7b-40fa-88a9-a94eb594497c",
     "save": {
       "url": "https://whatsapp-jb-activity.herokuapp.com/journeybuilder/save",
       "verb": "POST",
