@@ -6,6 +6,7 @@ const Path = require("path");
 const JWT = require(Path.join(__dirname, "..", "lib", "jwtDecoder.js"));
 var util = require("util");
 var http = require("https");
+var twilio = require("twilio");
 
 exports.logExecuteData = [];
 
@@ -68,6 +69,65 @@ exports.save = function(req, res) {
   res.send(200, "Save");
 };
 
+const formatMessage = (message, ...rest) => {
+  return rest.reduce((m, r, i) => {
+    const regexp = new RegExp(`\\{\\{${i}\\}\\}`, "g");
+    return m.replace(regexp, r);
+  }, message);
+};
+
+const getMessage = args => {
+  switch (args.messageTemplate) {
+    case "Code template": {
+      const template = "Your {{0}} code is {{1}}";
+      return formatMessage(template, "OCE", "12345678");
+    }
+    case "Appointment template": {
+      const template = "Your appointment is coming up on {{0}} at {{1}}";
+      const date = new Date();
+      const millisPerDay = 1000 * 60 * 60 * 24;
+      const futureDate = new Date(date.getTime() + millisPerDay * 14);
+      return formatMessage(
+        template,
+        futureDate.toLocaleDateString(),
+        futureDate.toLocaleTimeString(),
+      );
+    }
+    case "Order template": {
+      const template =
+        "Your {{0}} order of {{1}} has shipped and should be delivered on {{2}}. Details: {{3}}";
+      const date = new Date();
+      const millisPerDay = 1000 * 60 * 60 * 24;
+      const futureDate = new Date(date.getTime() + millisPerDay * 14);
+      return formatMessage(
+        template,
+        "OCE",
+        "widgets",
+        futureDate.toLocaleDateString(),
+        "https://iqvia.com",
+      );
+    }
+  }
+  return message;
+};
+
+const sendMessage = args => {
+  const message = getMessage(args);
+
+  const accountSid = process.env.waAccountSid;
+  const authToken = process.env.waAuthToken;
+
+  const phoneNumber = "+15703507242"; // args.phoneNumber;
+  const client = twilio(accountSid, authToken);
+  client.messages
+    .create({
+      from: "whatsapp:+14155238886",
+      body: message,
+      to: `whatsapp:${phoneNumber}`,
+    })
+    .then(waMessage => console.log(waMessage.sid));
+};
+
 /*
  * POST Handler for /execute/ route of Activity.
  */
@@ -84,6 +144,8 @@ exports.execute = function(req, res) {
       // decoded in arguments
       var decodedArgs = decoded.inArguments[0];
       console.log("decodedArgs", decodedArgs);
+
+      sendMessage(decodedArgs);
 
       logData(req);
       res.send(200, "Execute");

@@ -65,6 +65,7 @@ define(["postmonger", "jquery"], function(Postmonger, $) {
     payload["arguments"].execute.inArguments = [
       {
         tokens: authTokens,
+        key: "{{Contact.Key}}",
         emailAddress: "{{Contact.Attribute.PostcardJourney.EmailAddress}}",
         messageTemplate: messageTemplate,
       },
